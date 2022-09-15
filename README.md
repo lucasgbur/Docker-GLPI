@@ -18,6 +18,9 @@ docker run -it -d --name glpi-cron --link glpi-docker --volume glpi:/var/www/htm
 #Start Cron: 
 docker exec -i -t glpi-cron /tmp/startcron.sh
 
+Obs: Caso utilize a portaa 443, crie um certificado e adicione no diretorio certificados
+como criar um certificado: https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04-pt
+
 ------------------------------------------------
 
 Comandos Uteis
