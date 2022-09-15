@@ -1,45 +1,47 @@
 # Docker-GLPI
 
-#Dentro da pasta raiz
+#Dentro da pasta raiz execute:
 docker build -t glpi-docker .
 
-#entrar na pasta Cron
+#entrar na pasta Cron e execute: 
 docker build -t glpi-cron .
 
-#Criando volume do glpi /var
+#Criando volume do glpi /var: 
 docker volume create --name glpi
 
-#Criando container glpi
+#Criando container glpi: 
 docker run -it -d -v glpi:/var/www/html/glpi -p 443:443 --name glpi-docker glpi-docker
 
-#Ultimo comando
+#Ultimo comando: 
 docker run -it -d --name glpi-cron --link glpi-docker --volume glpi:/var/www/html/glpi glpi-cron
 
-#Start Cron
+#Start Cron: 
 docker exec -i -t glpi-cron /tmp/startcron.sh
 
 ------------------------------------------------
 
-#Entrar no bash do docker 
+Comandos Uteis
+
+#Entrar no bash do docker:
 docker exec -i -t (NOME DO CONTAINER) /bin/bash
 
-#Parar container
+#Parar container: 
 Docker stop (NOME DO CONTAINER)
 
-#remover container
+#remover container: 
 Docker rm (NOME DO CONTAINER)
 
-#Matar todos os containers ativos
+#Matar todos os containers ativos: 
 docker kill $(docker ps -q)
 
-#Status Docker
+#Status Docker: 
 docker stats (Nome do container)
 
-#atualizando total de memoria e swap do container
+#atualizando total de memoria e swap do container: 
 docker container update -m 5gb --cpus=1 --memory-swap 5000000000 glpi-docker
 
 ####CUIDADO#####
-#Remover todas as imagens buildadas
+#Remover todas as imagens buildadas: 
 docker system prune --all --force --volumes
 
 
@@ -52,7 +54,7 @@ docker run -it -d --name glpi-mysql --link glpi-docker mysql/mysql-server
 
 OU
 
-#execute
+#execute: 
 docker run --name nome-do-container  \
 -p 3306:3306 -p 33060:33060  \
 -e MYSQL_ROOT_HOST='%' -e MYSQL_ROOT_PASSWORD='sua-senha'   \
