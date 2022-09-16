@@ -1,4 +1,6 @@
 # Docker-GLPI
+Aplicação GLPI
+Aplicação Cron
 
 #Dentro da pasta raiz execute:
 docker build -t glpi-docker .
